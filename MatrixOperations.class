@@ -1,0 +1,87 @@
+// Source code is decompiled from a .class file using FernFlower decompiler.
+public class MatrixOperations {
+   public MatrixOperations() {
+   }
+
+   public static void main(String[] var0) {
+      try {
+         long[][] var1 = new long[][]{{1L, 2L, 3L, 4L}, {5L, 6L, 7L, 8L}, {9L, 10L, 11L, 12L}, {13L, 14L, 15L, 16L}};
+         long[][] var2 = new long[][]{{16L, 15L, 14L, 13L}, {12L, 11L, 10L, 9L}, {8L, 7L, 6L, 5L}, {4L, 3L, 2L, 1L}};
+         long[][] var3 = xorMatrices(var1, var2);
+         System.out.println("\u0420\u045a\u0420\u00b0\u0421\u201a\u0421\u0402\u0420\u0451\u0421\u2020\u0421\u040f C (A ^ B):");
+         printMatrix(var3);
+         long var4 = processMatrix(var3);
+         System.out.println("\u0420\u00a0\u0420\u00b5\u0420\u00b7\u0421\u0453\u0420\u00bb\u0421\u040a\u0421\u201a\u0420\u00b0\u0421\u201a \u0420\u0455\u0420\u00b1\u0421\u2021\u0420\u0451\u0421\u0403\u0420\u00bb\u0420\u00b5\u0420\u0405\u0421\u040a: " + var4);
+      } catch (Exception var6) {
+         System.err.println("\u0420\u045f\u0420\u0455\u0420\u0458\u0420\u0451\u0420\u00bb\u0420\u0454\u0420\u00b0: " + var6.getMessage());
+      }
+
+   }
+
+   public static long[][] xorMatrices(long[][] var0, long[][] var1) throws Exception {
+      if (var0.length == var1.length && var0[0].length == var1[0].length) {
+         long[][] var2 = new long[var0.length][var0[0].length];
+
+         for(int var3 = 0; var3 < var0.length; ++var3) {
+            for(int var4 = 0; var4 < var0[0].length; ++var4) {
+               var2[var3][var4] = var0[var3][var4] ^ var1[var3][var4];
+            }
+         }
+
+         return var2;
+      } else {
+         throw new Exception("\u0420\u045a\u0420\u00b0\u0421\u201a\u0421\u0402\u0420\u0451\u0421\u2020\u0421\u2013 \u0420\u0458\u0420\u00b0\u0421\u040b\u0421\u201a\u0421\u040a \u0421\u0402\u0421\u2013\u0420\u00b7\u0420\u0405\u0421\u2013 \u0421\u0402\u0420\u0455\u0420\u00b7\u0420\u0458\u0421\u2013\u0421\u0402\u0420\u0451.");
+      }
+   }
+
+   public static long processMatrix(long[][] var0) {
+      long var1 = 0L;
+
+      for(int var3 = 0; var3 < var0[0].length; ++var3) {
+         long var4;
+         int var6;
+         if (var3 % 2 == 0) {
+            var4 = var0[0][var3];
+
+            for(var6 = 1; var6 < var0.length; ++var6) {
+               if (var0[var6][var3] < var4) {
+                  var4 = var0[var6][var3];
+               }
+            }
+
+            var1 += var4;
+         } else {
+            var4 = var0[0][var3];
+
+            for(var6 = 1; var6 < var0.length; ++var6) {
+               if (var0[var6][var3] > var4) {
+                  var4 = var0[var6][var3];
+               }
+            }
+
+            var1 += var4;
+         }
+      }
+
+      return var1;
+   }
+
+   public static void printMatrix(long[][] var0) {
+      long[][] var1 = var0;
+      int var2 = var0.length;
+
+      for(int var3 = 0; var3 < var2; ++var3) {
+         long[] var4 = var1[var3];
+         long[] var5 = var4;
+         int var6 = var4.length;
+
+         for(int var7 = 0; var7 < var6; ++var7) {
+            long var8 = var5[var7];
+            System.out.print("" + var8 + " ");
+         }
+
+         System.out.println();
+      }
+
+   }
+}
